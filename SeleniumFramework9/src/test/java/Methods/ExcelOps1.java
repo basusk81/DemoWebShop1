@@ -22,7 +22,7 @@ public class ExcelOps1 {
 	static String Password = null;
 	static String ConfirmPassword = null;
 	static String flag1=null;
-	static int i=3, j=0, LastRow2;
+	static int i=2, j=0, LastRow2;
 	static String path;
 	static XSSFWorkbook workbook,workbook1;
 	static XSSFSheet sheet,sheet1;
@@ -34,9 +34,9 @@ public class ExcelOps1 {
 		workbook = new XSSFWorkbook(path+"\\Excels\\DataSheet2.xlsx");
 		sheet = workbook.getSheet("Sheet1");
 		int LastRow2 = sheet.getPhysicalNumberOfRows();
-		System.out.println(LastRow2);
+		System.out.println("Total Number of Rows filled :"+LastRow2);
 		
-		for(i=3; i<LastRow2; i++) {
+		for(i=2; i<LastRow2; i++) {
 		FirstName = sheet.getRow(i).getCell(j).getStringCellValue();
 		LastName = sheet.getRow(i).getCell(j+1).getStringCellValue();
 		Email = sheet.getRow(i).getCell(j+2).getStringCellValue();
@@ -62,25 +62,29 @@ public class ExcelOps1 {
 		//webshopRegister();
 		//webshopLogin();
 		
+	
+	
 
 	public static void excelwrite1() throws IOException {
 		path = System.getProperty("user.dir");
 		workbook1 = new XSSFWorkbook();
-		sheet1 = workbook1.createSheet("Sheet1");
-		XSSFRow row  = sheet1.createRow(i);
-		XSSFCell cell;
+		sheet1 = workbook1.getSheet("Sheet1");
 		
-
-		cell = row.createCell(j+6);
-		cell.setCellValue("Register Successful");
-		
-		cell = row.createCell(j+7);
-		cell.setCellValue("Login Successful");
-		
+		if (sheet1==null){
+			sheet1 = workbook1.createSheet("Sheet1");
+		}
+			XSSFRow row  = sheet1.createRow(i);
+			XSSFCell cell;
+			System.out.println("Value of i in the excelwrite fn is :"+i);
+			cell = row.createCell(j+6);
+			cell.setCellValue("Register Successful");
+			
+			cell = row.createCell(j+7);
+			cell.setCellValue("Login Successful");
 		
 		FileOutputStream out = new FileOutputStream(path+"\\Excels\\DataSheet3.xlsx");
 		workbook1.write(out);
-		out.close();
+		//out.close();
 		
 	}
 	

@@ -19,6 +19,8 @@ public class GoogleSearchPgAction2 {
 
 		WebDriverManager.firefoxdriver().setup();
 		driver = new FirefoxDriver();
+		
+		Thread.sleep(3000);
 
 		driver.get("https://www.google.com");
 
